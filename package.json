@@ -1,9 +1,9 @@
 {
   "name": "background-image-fade-in",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Fade in background images via ::after",
   "main": "dist/bundle.js",
-  "repository": "??",
+  "repository": "https://github.com/mini-eggs/background-image-fade-in.git",
   "author": "Evan M Jones <evanjones4040@gmail.com> (https://evansapps.com/)",
   "license": "MIT"
 }

@@ -1,7 +1,7 @@
 import AddPx from 'add-px-to-style'
 import Hyphenate from 'hyphenate-style-name'
 
-const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles) => {
+const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles, customTransition) => {
 
   if(typeof selector === 'undefined') {
     throw new Error('\nError in "background-image-fade-in"\n"selector" param is not defined')
@@ -18,6 +18,15 @@ const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles) =>
       for(let index = 0; index < Object.keys(obj).length; index++) {
         const key = Object.keys(obj)[index]
         css += Hyphenate(key) + ':' + AddPx(key, obj[key]) + ';'
+      }
+      return css
+    }
+
+    const ObjectToCssExtended = obj => {
+      let css = ''
+      for(let index = 0; index < Object.keys(obj).length; index++) {
+        const key = Object.keys(obj)[index]
+        css += Hyphenate(key) + '{' + ObjectToCss(obj[key]) + '}'
       }
       return css
     }
@@ -65,11 +74,36 @@ const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles) =>
       aImage.style.top = '-999999999999999px'
       aImage.style.left = '-999999999999999px'
 
+      let customTranstionVal
+      if(typeof customTransition === 'string') {
+        customTranstionVal = customTransition
+      }
+      else if(typeof customTransition === 'object') {
+        customTranstionVal = ObjectToCssExtended(customTransition)
+      }
+      else {
+        customTranstionVal = `
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        `
+      }
+
+      const transitionName = 'image__fade__in__transition' + randomString()
+      const transitionStylesheet = document.createElement('style')
+      transitionStylesheet.innerHTML = `
+        @keyframes ${transitionName} {
+          ${customTranstionVal}
+        }
+      `
+      document.getElementsByTagName('head')[0].appendChild(transitionStylesheet)
+
       aImage.onload = function(event) {
-        const rand = randomString()
         const index = event.target.getAttribute('data-src')
-        const className = 'image__fade__in' + rand
-        const transitionName = 'image__fade__in__transition' + rand
+        const className = 'image__fade__in' + randomString()
         const el = document.querySelectorAll(selector)[parseInt(index)]
         el.className = el.className + ' ' + className
         const image = el.getAttribute('data-src')
@@ -94,7 +128,8 @@ const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles) =>
         // create stylesheet
         const stylesheet = document.createElement('style')
         stylesheet.innerHTML = `
-          .${className}:after {
+          .${className}:after,
+          .${className}::after {
             background-image: url('${image}');
             content: ' ';
             position: absolute;
@@ -107,14 +142,6 @@ const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles) =>
             animation-name: ${transitionName};
             z-index: 0;
             ${styles}
-          }
-          @keyframes ${transitionName} {
-            from {
-              opacity: 0;
-            }
-            to {
-              opacity: 1;
-            }
           }
         `
         // append stylesheet

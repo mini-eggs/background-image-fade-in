@@ -68,3 +68,6 @@ BackgroundImageFadeIn('.featured__image', 1000, 'background-color: purple;')
 * CSS string/Javascript style object for container
   * default: 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;'
   * type: string or object
+* CSS kyeframe string/object
+  * default: 'from { opacity: 0; } to { opacity: 1; }'
+  * type: string or object

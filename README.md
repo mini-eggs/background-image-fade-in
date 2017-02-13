@@ -2,6 +2,9 @@
 
 Fades in background with use of `::after` + `:after`. Supports ES6 modules and module.exports.
 
+![gif example](https://i.imgur.com/rOovj6Q.gif)
+![code example](https://i.imgur.com/s433bE3.png)
+
 ## How to use ###
 
 HTML

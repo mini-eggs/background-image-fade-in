@@ -95,29 +95,13 @@ const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles) =>
         const stylesheet = document.createElement('style')
         stylesheet.innerHTML = `
           .${className}:after {
-            background-image: url(${image});
+            background-image: url('${image}');
             content: ' ';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0;
-            animation-duration: ${duration}ms;
-            animation-fill-mode: both;
-            animation-name: ${transitionName};
-            z-index: 0;
-            ${styles}
-          }
-          .${className}::after {
-            background-image: url(${image});
-            content: ' ';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
             animation-duration: ${duration}ms;
             animation-fill-mode: both;
             animation-name: ${transitionName};

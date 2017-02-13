@@ -1,6 +1,10 @@
 # Background image fade in #
 
-Fades in background with use of `::after` + `:after`. Supports ES6 modules (import) and CommonJS (require) and browser use. For browser use: use the bundle within the browser folder--using the function `backgroundImageFadeIn`.
+Fades in background with use of `::after` + `:after`. Supports ES6 modules (import), CommonJS (require), and browser (script tag) use. For browser use: use the bundle within the `browser` folder--using the function `backgroundImageFadeIn`. 
+
+* Browser support:
+  * Full support: IE10 and all major vendors
+  * Graceful support: IE9 (image will not fade in, but will not load choppy--either)
 
 
 ![gif example](https://i.imgur.com/rOovj6Q.gif)

@@ -1,7 +1,7 @@
 import AddPx from 'add-px-to-style'
 import Hyphenate from 'hyphenate-style-name'
 
-const backgroundImageFadeIn = (selector, duration, extraCSS) => {
+const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles) => {
 
   if(typeof selector === 'undefined') {
     throw new Error('\nError in "background-image-fade-in"\n"selector" param is not defined')
@@ -14,7 +14,7 @@ const backgroundImageFadeIn = (selector, duration, extraCSS) => {
     }
 
     const ObjectToCss = obj => {
-      return Object.keys(obj).forEach((key, index) => {
+      return Object.keys(obj).map((key, index) => {
         return Hyphenate(key) + ':' + AddPx(key, obj[key]) + ';'
       }).join('')
     }
@@ -27,6 +27,26 @@ const backgroundImageFadeIn = (selector, duration, extraCSS) => {
     const featuredImages = document.querySelectorAll(selector)
     featuredImages.forEach((featuredImage, index) => {
       featuredImage.style.position = 'relative'
+      const innerHTML = featuredImage.innerHTML 
+      let innerStyles = `
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        z-index: 1;
+      `
+      if(typeof containerStyles === 'object') {
+        innerStyles += ObjectToCss(containerStyles)
+      }
+      else if(typeof containerStyles === 'string') {
+        innerStyles += containerStyles
+      }
+      featuredImage.innerHTML = `
+        <div style="${innerStyles}">
+          ${innerHTML}
+        </div>
+      `
 
       const aImage = document.createElement('img')
       aImage.className = 'image__loader'
@@ -79,6 +99,7 @@ const backgroundImageFadeIn = (selector, duration, extraCSS) => {
             animation-duration: ${duration}ms;
             animation-fill-mode: both;
             animation-name: ${transitionName};
+            z-index: 0;
             ${styles}
           }
           .${className}::after {
@@ -93,6 +114,7 @@ const backgroundImageFadeIn = (selector, duration, extraCSS) => {
             animation-duration: ${duration}ms;
             animation-fill-mode: both;
             animation-name: ${transitionName};
+            z-index: 0;
             ${styles}
           }
           @keyframes ${transitionName} {

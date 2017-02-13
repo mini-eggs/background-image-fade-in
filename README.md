@@ -57,4 +57,4 @@ BackgroundImageFadeIn('.featured__image', 1000, 'background-color: purple;')
   * typeL string or object
 * CSS string/Javascript style object for container
   * default: 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;'
-  * typeL string or object
+  * type: string or object

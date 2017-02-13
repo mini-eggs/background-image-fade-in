@@ -18,6 +18,7 @@
     "webpack": "^2.2.1"
   },
   "scripts": {
-    "start": "webpack --progress --hide-modules"
+    "start": "webpack --progress --hide-modules",
+    "start-browser": "webpack --config webpack.browser.js --progress --hide-modules"
   }
 }

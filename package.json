@@ -1,6 +1,6 @@
 {
   "name": "background-image-fade-in",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "description": "Fade in background images via ::after",
   "main": "dist/bundle.js",
   "repository": "https://github.com/mini-eggs/background-image-fade-in.git",
@@ -11,8 +11,8 @@
     "hyphenate-style-name": "^1.0.2"
   },
   "devDependencies": {
-    "babel-loader": "^6.2.10",
     "babel-core": "^6.22.1",
+    "babel-loader": "^6.22.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.22.0",
     "webpack": "^2.2.1"

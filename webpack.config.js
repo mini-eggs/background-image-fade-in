@@ -11,14 +11,20 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js)$/,
-        use: [
-          {
-            loader: 'babel-loader'
-          },
-        ],
-      },
-    ],
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: path.join(__dirname, 'src'),
+        query: {
+          presets: ['es2015'], 
+          plugins: ['add-module-exports']
+        }
+      }
+    ]
+  },
+  resolve: {
+    extensions: [
+      '.js'
+    ]
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({

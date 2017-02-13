@@ -14,9 +14,12 @@ const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles) =>
     }
 
     const ObjectToCss = obj => {
-      return Object.keys(obj).map((key, index) => {
-        return Hyphenate(key) + ':' + AddPx(key, obj[key]) + ';'
-      }).join('')
+      let css = ''
+      for(let index = 0; index < Object.keys(obj).length; index++) {
+        const key = Object.keys(obj)[index]
+        css += Hyphenate(key) + ':' + AddPx(key, obj[key]) + ';'
+      }
+      return css
     }
 
     const randomString = () => {
@@ -25,8 +28,12 @@ const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles) =>
     }
     
     const featuredImages = document.querySelectorAll(selector)
-    featuredImages.forEach((featuredImage, index) => {
+
+    for(let index = 0; index < featuredImages.length; index++) {
+
+      const featuredImage = featuredImages[index]
       featuredImage.style.position = 'relative'
+
       const innerHTML = featuredImage.innerHTML 
       let innerStyles = `
         position: absolute; 
@@ -132,7 +139,7 @@ const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles) =>
         event.target.parentNode.removeChild(event.target)
       }
       document.body.appendChild(aImage)
-    })
+    }
   }
 }
 

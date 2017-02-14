@@ -41,15 +41,9 @@ const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles, cu
     for(let index = 0; index < featuredImages.length; index++) {
 
       const featuredImage = featuredImages[index]
-      featuredImage.style.position = 'relative'
-
-      const innerHTML = featuredImage.innerHTML 
+      
       let innerStyles = `
-        position: absolute; 
-        top: 0; 
-        left: 0; 
-        width: 100%; 
-        height: 100%; 
+        position: relative;
         z-index: 1;
       `
       if(typeof containerStyles === 'object') {
@@ -58,11 +52,7 @@ const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles, cu
       else if(typeof containerStyles === 'string') {
         innerStyles += containerStyles
       }
-      featuredImage.innerHTML = `
-        <div style="${innerStyles}">
-          ${innerHTML}
-        </div>
-      `
+      featuredImage.style = innerStyles
 
       const aImage = document.createElement('img')
       aImage.className = 'image__loader'
@@ -128,8 +118,8 @@ const backgroundImageFadeIn = (selector, duration, extraCSS, containerStyles, cu
         // create stylesheet
         const stylesheet = document.createElement('style')
         stylesheet.innerHTML = `
-          .${className}:after,
-          .${className}::after {
+          .${className}:before,
+          .${className}::before {
             background-image: url('${image}');
             content: ' ';
             position: absolute;

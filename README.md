@@ -1,6 +1,6 @@
 # Background image fade in #
 
-Fades in background with use of `::after` + `:after`. Supports ES6 modules (import), CommonJS (require), and browser (script tag) use. For browser use: use the bundle within the `browser` folder--using the function `backgroundImageFadeIn`. 
+Fades in background with use of `::before` + `:before`. Supports ES6 modules (import), CommonJS (require), and browser (script tag) use. For browser use: use the bundle within the `browser` folder--using the function `backgroundImageFadeIn`. 
 
 * Browser support:
   * Full support: IE10+ and all other major vendors
@@ -62,7 +62,7 @@ BackgroundImageFadeIn('.featured__image', 1000, 'background-color: purple;')
 * Animation duration milliseconds
   * default: 1000
   * type: int
-* CSS string/Javascript style object for ::after/:after
+* CSS string/Javascript style object for ::before/:before
   * default: 'background-size: cover; background-position: center center;'
   * typeL string or object
 * CSS string/Javascript style object for container

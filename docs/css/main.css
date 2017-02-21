@@ -1,0 +1,13 @@
+body {
+  font-family: sans-serif;
+}
+.page__wrap {
+  margin: 5px;
+}
+.fade__me__in {
+  height: 20vw;
+  width: 20vw;
+  display: inline-block;
+  margin: 10px;
+  background-color: rgba(0,0,0,0.1);
+}
